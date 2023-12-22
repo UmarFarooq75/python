@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0066cc;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-left: 10px;
+            min-width: 300px; /* Set a minimum width for each item */
+        }
+        div {
+            padding:10px;
+        }
+        .user-info {
+            font-weight: bold;
+            color: #0066cc;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        img {
+            height: 30px;
+            width: 30px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .delete-btn:hover img {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON Data</h1>
+    <ul>
+        {% for user in data[:30] %}
+        <li>
+            <button class="delete-btn" onclick="deleteUser('{{ user.id }}', '{{ user.name }}')">
+                <img src="https://img.icons8.com/ios/30/000000/delete-sign.png" alt="Delete">
+            </button>                     
+            <div class="user-info">Username: {{ user.username }}</div>
+            <div> <b>Name: </b>{{ user.name }}</div>
+            <div><b>Email: </b> {{ user.email }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function deleteUser(id, name) {
+            if (confirm("Are you sure you want to delete the user: " + name + "?")) {
+                fetch("/delete_user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ id: parseInt(id) }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert("Error deleting user: " + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An unexpected error occurred.");
+                });
+            }
+        }
+    </script>
+</body>
+</html>

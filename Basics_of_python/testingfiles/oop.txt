@@ -1,0 +1,14 @@
+Name	Salary	Description	SubEmployee
+Umar	555555	Software Engineer with experience in React Native, ReactJS, Next.js, and Tailwind CSS.
+Name	Salary	Description	SubEmployee
+John	50000	Web Developer with expertise in Python, Django, and JavaScript.
+Name	Salary	Description	SubEmployee
+Alice	60000	Data Scientist specializing in machine learning and data analysis.
+Wick	20000	Data Scientist specializing in machine learning and data analysis.	True
+Name	Salary	Description	SubEmployee
+Umar	555555	Software Engineer with experience in React Native, ReactJS, Next.js, and Tailwind CSS.
+Name	Salary	Description	SubEmployee
+John	50000	Web Developer with expertise in Python, Django, and JavaScript.
+Name	Salary	Description	SubEmployee
+Alice	60000	Data Scientist specializing in machine learning and data analysis.
+Wick	20000	Data Scientist specializing in machine learning and data analysis.	True
